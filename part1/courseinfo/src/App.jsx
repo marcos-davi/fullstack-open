@@ -7,7 +7,6 @@ const Header = (props) => {
 };
 
 const Part = (props) => {
-  const part = [];
   return (
     <p>
       {props.part} {props.exercises}

@@ -3,8 +3,8 @@ const Header = (props) => {
     <div>
       <h1>{props.course}</h1>
     </div>
-  )
-}
+  );
+};
 
 const Contents = ({ parts }) => {
   return (
@@ -55,4 +55,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

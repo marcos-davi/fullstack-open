@@ -6,23 +6,19 @@ const Header = (props) => {
   );
 };
 
-const Part = (props) => {
-  return (
-    <p>
-      {props.part} {props.exercises}
-    </p>
-  );
-};
 
-const Contents = (props) => {
+
+const Contents = ({arrayProp}) => {
   return (
     <div>
-      <Part part={props.part1} exercises={props.exercises1} />
-      <Part part={props.part2} exercises={props.exercises2} />
-      <Part part={props.part3} exercises={props.exercises3} />
+    {arrayProp.map(item =>
+    <p key={item.name}>{item.name} {item.exercises}</p>)}
+     
     </div>
   );
 };
+
+
 
 const Total = (props) => {
   return <p>Number of exercises {props.exercises}</p>;
@@ -45,20 +41,27 @@ const App = () => {
       exercises: 14,
     },
   ];
+  
+  
 
   return (
-    <div>
+    
+    <div>   
+    
       <Header course={course} />
-
-      <Contents
+      <Contents arrayProp={parts}
+      
+      
+      /*
         part1={parts[0].name}
         part2={parts[1].name}
         part3={parts[2].name}
         exercises1={parts[0].exercises}
         exercises2={parts[1].exercises}
         exercises3={parts[2].exercises}
+        */
       />
-
+{console.log(parts)}
       <Total
         exercises={parts[0].exercises + parts[1].exercises + parts[2].exercises}
       />

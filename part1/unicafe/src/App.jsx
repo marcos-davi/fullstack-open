@@ -20,10 +20,20 @@ const App = () => {
     set(value + 1);
   };
 
+  const Percentage = (good, neutral, bad) => {
+    let total = good + 0.01 + neutral + bad;
+    const percent = () => {
+      let valor = (good * 100) / total;
+      let roundValor = Math.ceil(valor);
+      return roundValor + "%";
+    };
+    return percent();
+  };
+
   return (
     <div>
       <Head text="Give Feedback" />
-
+      {console.log(Percentage(good, neutral, bad))}
       <Button handleClick={() => setToStatisc(good, setGood)} text="Good" />
       <Button
         handleClick={() => setToStatisc(neutral, setNeutral)}
@@ -36,6 +46,8 @@ const App = () => {
       <Display text="Good: " value={good} />
       <Display text="Neutral: " value={neutral} />
       <Display text="Bad: " value={bad} />
+      <Display text="Average: " value={(good + neutral + bad) / 3} />
+      <Display text="Positive: " value={Percentage(good, neutral, bad)} />
     </div>
   );
 };

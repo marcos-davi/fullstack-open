@@ -41,7 +41,7 @@ const App = () => {
       />
       <Button handleClick={() => setToStatisc(bad, setBad)} text="Bad" />
 
-      <Head text="Statics" />
+      <Head text="Statistics" />
 
       <Display text="Good: " value={good} />
       <Display text="Neutral: " value={neutral} />

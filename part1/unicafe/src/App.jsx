@@ -59,7 +59,7 @@ const App = () => {
   };
 
   return (
-   <div>
+    <div>
       <Statistics
         textHead1="Give Feedback"
         handle1={() => setToStatisc(good, setGood)}
@@ -81,7 +81,7 @@ const App = () => {
         valueDisplay5={percentage(good, neutral, bad)} />
 
     </div>
-  )
+  );
+};
 
-
-export default App
+export default App;

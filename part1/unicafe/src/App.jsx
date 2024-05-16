@@ -5,36 +5,27 @@ const Head = (props) => <h1>{props.text}</h1>;
 const Button = (props) => (
   <button onClick={props.handleClick}>{props.text}</button>
 );
-const Display = (props) => {
-//  if(props.value === 0 || props.value === "0%") {
-//     return(     
-//     <div>{"Vacio"}</div>  
-//     )
-//   }
+const StatisticLine = (props) => {
   return (
     <p>
-    {props.text} {props.value}
-  </p>
-  )
+      {props.text} {props.value}
+    </p>
+  );
 };
- 
+
 const Statistics = (props) => {
-  if (props.allClicks === 0){
-    return(
-      <div>
-        No feedback given
-      </div>
-    )  }
-    return(
+  if (props.allClicks === 0) {
+    return <div>No feedback given</div>;
+  }
+  return (
     <div>
-    <Display text={props.textDisplay1} value={props.valueDisplay1} />
-    <Display text={props.textDisplay2} value={props.valueDisplay2} />
-    <Display text={props.textDisplay3} value={props.valueDisplay3} />
-    <Display text={props.textDisplay4} value={props.valueDisplay4} />
-    <Display text={props.textDisplay5} value={props.valueDisplay5} />
-  </div>
-  )
-  
+      <StatisticLine text="Good: " value={props.valueDisplay1} />
+      <StatisticLine text="Neutral: " value={props.valueDisplay2} />
+      <StatisticLine text="Bad: " value={props.valueDisplay3} />
+      <StatisticLine text="Average: " value={props.valueDisplay4} />
+      <StatisticLine text="Positive: " value={props.valueDisplay5} />
+    </div>
+  );
 };
 
 const App = () => {
@@ -45,7 +36,7 @@ const App = () => {
   const [allClicks, setAllClicks] = useState(0);
 
   const setToStatisc = (value, set, allClicks, setAllClicks) => {
-    setAllClicks(allClicks + 1)
+    setAllClicks(allClicks + 1);
     set(value + 1);
   };
 
@@ -59,7 +50,7 @@ const App = () => {
   };
 
   const percentage = (good, neutral, bad) => {
-    let total = good + 0.01 + neutral + bad; // el + 0.01 es para no dejar vacio el objeto y salir el valor naN
+    let total = good + neutral + bad; 
     const percent = () => {
       let valor = (good * 100) / total;
       let roundValor = Math.ceil(valor);
@@ -70,28 +61,33 @@ const App = () => {
 
   return (
     <div>
-
       <Head text="Give Feedback" />
 
-      <Button handleClick={() => setToStatisc(good, setGood, allClicks, setAllClicks)} text="Good"/>
-      <Button handleClick={() => setToStatisc(neutral, setNeutral, allClicks, setAllClicks)} text="Neutral" />
-      <Button handleClick={() => setToStatisc(bad, setBad, allClicks, setAllClicks)} text="Bad" />
+      <Button
+        handleClick={() => setToStatisc(good, setGood, allClicks, setAllClicks)}
+        text="Good"
+      />
+      <Button
+        handleClick={() =>
+          setToStatisc(neutral, setNeutral, allClicks, setAllClicks)
+        }
+        text="Neutral"
+      />
+      <Button
+        handleClick={() => setToStatisc(bad, setBad, allClicks, setAllClicks)}
+        text="Bad"
+      />
 
       <Head text="Statiscs" />
 
       <Statistics
-        allClicks = {allClicks}
-        textDisplay1="Good: "
+        allClicks={allClicks}
         valueDisplay1={good}
-        textDisplay2="Neutral: "
         valueDisplay2={neutral}
-        textDisplay3="Bad: "
         valueDisplay3={bad}
-        textDisplay4="Average: "
         valueDisplay4={average(good, neutral, bad)}
-        textDisplay5="Positive: "
-        valueDisplay5={percentage(good, neutral, bad)} />
-
+        valueDisplay5={percentage(good, neutral, bad)}
+      />
     </div>
   );
 };
